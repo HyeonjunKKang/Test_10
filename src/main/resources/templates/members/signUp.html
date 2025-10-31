@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="kr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SignUp</title>
+    <style>
+        table {
+            text-align: left;
+        }
+
+        span {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <h1>회원 가입</h1>
+    <form method="POST" action="/members/signup" id="signup-form" th:object="${memberDTO}">
+        <div th:if="${#fields.hasAnyErrors()}">
+            <div th:each="error : ${#fields.allErrors()}">
+                <span th:text="${error}"></span>
+            </div>
+        </div>
+
+        <table>
+            <tbody>
+            <tr>
+                <th>이메일</th>
+                <td><input type="email" th:field="*{email}"></td>
+            </tr>
+            <tr>
+                <th>비밀번호</th>
+                <td><input type="password" th:field="*{password}"></td>
+            </tr>
+            <tr>
+                <th>이름</th>
+                <td><input type="text" th:field="*{name}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <input type="submit" value="가입">
+        <input type="submit" value="취소">
+    </form>
+</div>
+</body>
+</html>
